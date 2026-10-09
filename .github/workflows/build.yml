@@ -1,34 +1,25 @@
-name: Build F-92 Android Empire
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+import os
 
-on:
-  push:
-    branches: [ main, master ]
+app = FastAPI(title="F-92 Sovereign Empire - Core")
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+templates_dir = "templates" if os.path.exists("templates") else "."
+templates = Jinja2Templates(directory=templates_dir)
 
-    steps:
-    - uses: actions/checkout@v4
+@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    if os.path.exists(os.path.join(templates_dir, "dashboard.html")):
+        return templates.TemplateResponse("dashboard.html", {"request": request})
+    return "<h3>إمبراطورية F-92 السيادية تعمل بكفاءة مطلقة بنسبة 100%</h3>"
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-
-    - name: Install Buildozer and Dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libffi-dev
-        pip install --upgrade pip
-        pip install buildozer cython==0.29.36
-
-    - name: Build APK with Buildozer
-      run: |
-        buildozer -v android debug
-
-    - name: Upload APK Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: f92-empire-apk
-        path: bin/*.apk
+@app.get("/status")
+def system_status():
+    return {
+        "empire": "F-92 Sovereign Empire",
+        "commander": "العراب",
+        "status": "Online & Secured",
+        "treasury": "$92,000,000"
+    }
+  
