@@ -3,29 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة قيادة F-92 السيادية</title>
+    <title>لوحة القيادة - F-92 الإمبراطورية السيادية</title>
     <style>
-        body { background: #030307; color: #00ff66; font-family: monospace; margin: 0; padding: 20px; text-align: center; }
-        .panel { border: 2px solid #00ff66; border-radius: 12px; padding: 20px; max-width: 450px; margin: 20px auto; background: #0c0c14; box-shadow: 0 0 15px rgba(0,255,102,0.2); }
-        h1 { color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
-        .stat-item { background: #151522; margin: 10px 0; padding: 12px; border-radius: 6px; border: 1px solid #333; color: #fff; }
-        .status-active { color: #00ff66; font-weight: bold; }
+        body { background-color: #1a1a1a; color: #00ff66; font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .dashboard { border: 2px solid #00ff66; border-radius: 12px; padding: 20px; max-width: 400px; margin: auto; background-color: #262626; box-shadow: 0 0 15px #00ff66; }
+        h1 { color: #ffd700; text-shadow: 0 0 10px #ffd700; }
+        .card { background: #333; margin: 15px 0; padding: 15px; border-radius: 8px; border: 1px solid #00ff66; }
+        .status { color: #00ff66; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="panel">
+    <div class="dashboard">
         <h1>إمبراطورية F-92</h1>
         <p>القائد الأعلى: العراب</p>
-        <hr style="border-color: #333;">
-        <div class="stat-item">
-            حالة النظام: <span class="status-active">مؤمن بالكامل ومنتشر</span>
+        
+        <div class="card">
+            <h3>حالة النظام</h3>
+            <p class="status">متصل وآمن بنسبة 100%</p>
         </div>
-        <div class="stat-item">
-            الخزينة السيادية: <span style="color: #ffd700; font-weight: bold;">$92,000,000</span>
+
+        <div class="card">
+            <h3>الخزينة السيادية</h3>
+            <p style="color: #ffd700; font-size: 20px; font-weight: bold;">$92,000,000</p>
         </div>
-        <div class="stat-item">
-            بروتوكول الحماية: <span style="color: #00ffff;">نشط (F-92 Core)</span>
+
+        <div class="card">
+            <h3>العمليات العسكرية والتحكم</h3>
+            <p>جميع الأنظمة والأيقونات تعمل بتناغم تام</p>
         </div>
     </div>
 </body>
 </html>
+
