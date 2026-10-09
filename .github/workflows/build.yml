@@ -16,14 +16,19 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install Dependencies
+    - name: Install Buildozer and Dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        sudo apt-get update
+        sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libffi-dev
+        pip install --upgrade pip
+        pip install buildozer cython==0.29.36
 
-    - name: Verify Server Script
+    - name: Build APK with Buildozer
       run: |
-        python server.py &
-        sleep 3
-        echo "Server structure verified successfully for F-92 Empire!"
+        buildozer -v android debug
 
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: f92-empire-apk
+        path: bin/*.apk
